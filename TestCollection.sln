@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothDemo", "BluetoothD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeginInvokeTest", "BeginInvokeTest\BeginInvokeTest.csproj", "{74189794-1643-453D-92D5-401447029DFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncBindingTest", "AsyncBindingTest\AsyncBindingTest.csproj", "{099A3236-940B-4781-BDA6-307FE3784D83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{74189794-1643-453D-92D5-401447029DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74189794-1643-453D-92D5-401447029DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74189794-1643-453D-92D5-401447029DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{099A3236-940B-4781-BDA6-307FE3784D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{099A3236-940B-4781-BDA6-307FE3784D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{099A3236-940B-4781-BDA6-307FE3784D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{099A3236-940B-4781-BDA6-307FE3784D83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
