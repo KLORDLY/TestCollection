@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeginInvokeTest", "BeginInv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncBindingTest", "AsyncBindingTest\AsyncBindingTest.csproj", "{099A3236-940B-4781-BDA6-307FE3784D83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassAndStructTest", "ClassAndStructTest\ClassAndStructTest.csproj", "{6FE30CE9-4E82-4BDB-9F0E-022125E9CAF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComTool", "ComTool\ComTool.csproj", "{887A396E-8C2A-4936-B523-42D4D1F04F1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{099A3236-940B-4781-BDA6-307FE3784D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{099A3236-940B-4781-BDA6-307FE3784D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{099A3236-940B-4781-BDA6-307FE3784D83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FE30CE9-4E82-4BDB-9F0E-022125E9CAF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FE30CE9-4E82-4BDB-9F0E-022125E9CAF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FE30CE9-4E82-4BDB-9F0E-022125E9CAF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FE30CE9-4E82-4BDB-9F0E-022125E9CAF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887A396E-8C2A-4936-B523-42D4D1F04F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887A396E-8C2A-4936-B523-42D4D1F04F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887A396E-8C2A-4936-B523-42D4D1F04F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887A396E-8C2A-4936-B523-42D4D1F04F1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

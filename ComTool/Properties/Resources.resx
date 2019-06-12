@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnCloseText" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="btnOpenText" xml:space="preserve">
+    <value>开启</value>
+  </data>
+  <data name="ClientMode" xml:space="preserve">
+    <value>串口通讯,网络通讯,USB通讯</value>
+  </data>
+  <data name="ErrorStartClient" xml:space="preserve">
+    <value>打开连接失败!</value>
+  </data>
+  <data name="ExpandClose" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="ExpandOpen" xml:space="preserve">
+    <value>扩展</value>
+  </data>
+  <data name="ReceivedInterval" xml:space="preserve">
+    <value>无间隔,空格,换行,Tab格</value>
+  </data>
+  <data name="ShowTime" xml:space="preserve">
+    <value>无,总毫秒,时分秒</value>
+  </data>
+  <data name="SocketClientMode" xml:space="preserve">
+    <value>UDP通讯,TCP通讯</value>
+  </data>
+  <data name="ErrorDeleteFile" xml:space="preserve">
+    <value>请选择要删除的文件.</value>
+  </data>
+  <data name="ErrorDeleteFileExist" xml:space="preserve">
+    <value>文件已不存在.</value>
+  </data>
+  <data name="ErrorNoClient" xml:space="preserve">
+    <value>请打开连接再发送.</value>
+  </data>
+  <data name="ErrorReadFile" xml:space="preserve">
+    <value>文件格式出错.</value>
+  </data>
+  <data name="ErrorSaveDataText" xml:space="preserve">
+    <value>要写入的文件内容不能为空.</value>
+  </data>
+  <data name="ErrorSaveFile" xml:space="preserve">
+    <value>保存文件名不能为空.</value>
+  </data>
+  <data name="ErrorUSBStartClient" xml:space="preserve">
+    <value>未检测到设备连接，请检查VID\PID以及设备连接状态！</value>
+  </data>
+  <data name="HelpInfomation" xml:space="preserve">
+    <value>实现功能:  
+
+1.可根据需要选取串口通讯,网络通讯和USB通讯三种通讯方式.
+2.接收串口，网络和USB线传来的数据并进行显示.
+3.所接收到的数据显示方式可以选择字符方式或者HEX方式.
+4.中文显示无乱码,且不影响速度.
+5.串口通讯可以选择各个参数,并且串口设置和字符串操作等设置在程序关闭时会自动保存,打开时自动载入.网络通讯可以写入IP和端口,如果格式错误连接会出错.USB通讯可以搜索到Location，如果重复连接同一台机器会出错.
+6.可以发送HEX命令,但需要写好发送格式并勾选HEX发送.
+7.可以定时重复发送数据,并可以设置发送时间间隔.
+8.可以在发送字符串时选择发送新行,即自动加上回车换行.
+9.可以将接收文本框中的内容存储起来,也可以打开一个TEXT文档将内容读取到接收文本框.
+10.可以即时显示发送的字节数和接收的字节数,按清除按钮会清空文本框.
+11.扩展功能,多条命令字符串定义,每条字符串定义为字符串方式,可以以HEX发送.
+12.点击字符串右边的编号即可发送这条字符串.
+13.可以设置为循环发送你定义过的字符串,并且可以设置发送时间间隔.
+14.可以存储多条字符串命令,在扩展框下方的文本框中输入文件名点保存即可存储,存好的文件名会出现在顶端的下拉框中.
+15.选择顶端下拉框中的某一文件名会将文件中的内容按照格式转化为多条字符串命令,利于下次操作.
+16.可以选择接受数据间隔,提供空格,回车,Tab格3种间隔方式
+17.存储多条命令时如果文件名存在将默认更新文件.
+
+存在问题:
+1.由于处理机制有点慢,在自动发送间隔低于50ms时,发送结束后会有一部分数据尚未显示,需要一定缓冲时间.
+2.由于TextBox有显示上限,所以在工作时为了保证软件运行,在TextBox将要达到上限时采取了自动保存并删除文本框内容的方法,保存文件路径为当前程序目录下,名字为保存时间和显示方式,请注意.</value>
+  </data>
+</root>
