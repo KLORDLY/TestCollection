@@ -1,4 +1,4 @@
-﻿namespace TestCollection
+﻿namespace BluetoothDemo
 {
     partial class Form1
     {
