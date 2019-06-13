@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace TcpClientApp
 {
@@ -20,8 +21,9 @@ namespace TcpClientApp
         {
             try
             {
+               
                 client = new TcpClient();
-                client.Connect("192.168.2.212", 8500);  //服务器连接
+                client.Connect(GetIpString(), 8500);  //服务器连接
             }
             catch (Exception ex)
             {
@@ -69,7 +71,7 @@ namespace TcpClientApp
         //发送文件
         private void SendFile(string filePath)
         {
-            IPAddress ip = IPAddress.Parse("192.168.2.212");
+            IPAddress ip = IPAddress.Parse(GetIpString());
             TcpListener listener = new TcpListener(ip, 0);
             listener.Start();
 
@@ -124,6 +126,18 @@ namespace TcpClientApp
                 localClient.Close();
                 listener.Stop();
             }
+        }
+
+        private string GetIpString()
+        {
+            string ipString = string.Empty;
+            IPAddress[] ips = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
+            if (ips != null && ips.Length > 0)
+            {
+                //获取本机IP
+                ipString=ips[6].ToString();
+            }
+            return ipString;
         }
     }
     public delegate void OnMessageEventHandler(string msg);

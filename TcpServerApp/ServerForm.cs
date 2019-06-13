@@ -22,7 +22,7 @@ namespace TcpServerApp
         {
             btnStart.Visible = false;
             txtMsg.Text += "Server is running ...\r\n";
-            IPAddress ip = IPAddress.Parse("192.168.2.212");//本机的ip，可动态获取
+            IPAddress ip = IPAddress.Parse(GetIpString());
             TcpListener listener = new TcpListener(ip, 8500);
 
             listener.Start();  //开启对控制端口8500的侦听
@@ -48,6 +48,19 @@ namespace TcpServerApp
             {
                 txtMsg.Text += msg + "\r\n";
             }
+        }
+
+
+        private string GetIpString()
+        {
+            string ipString = string.Empty;
+            IPAddress[] ips = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
+            if (ips != null && ips.Length > 0)
+            {
+                //获取本机IP
+                ipString = ips[6].ToString();
+            }
+            return ipString;
         }
 
     }
