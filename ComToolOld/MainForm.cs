@@ -11,7 +11,7 @@ using System.Threading;
 using System.IO;
 using System.Xml;
 
-namespace ComTool
+namespace ComToolOld
 {
     public partial class MainForm : Form
     {
@@ -35,8 +35,26 @@ namespace ComTool
         private void MainForm_Load(object sender, EventArgs e)
         {
             //通讯方式赋初值
-            //this.cboClientMode.Items.AddRange(GetResources.iResource.GetString("ClientMode").Split(','));
-            this.tabControl1.SelectedIndex = Properties.Settings.Default.CLIENTMODE;
+            this.cboClientMode.Items.AddRange(GetResources.iResource.GetString("ClientMode").Split(','));
+            this.cboClientMode.SelectedIndex = Properties.Settings.Default.CLIENTMODE;
+            if (cboClientMode.SelectedIndex == 0)
+            {
+                this.grpSerialDevice.Visible = true;
+                this.grpSocketDevice.Visible = false;
+                this.grpUSBDevice.Visible = false;
+            }
+            if(cboClientMode.SelectedIndex == 1)
+            {
+                this.grpSerialDevice.Visible = false;
+                this.grpSocketDevice.Visible = true;
+                this.grpUSBDevice.Visible = false;
+            }
+            if (cboClientMode.SelectedIndex == 2)
+            {
+                this.grpSerialDevice.Visible = false;
+                this.grpSocketDevice.Visible = false;
+                this.grpUSBDevice.Visible = true;
+            }
 
             //串口通讯窗口赋初值
             this.cboPort.Items.AddRange(SerialPort.GetPortNames());
@@ -183,7 +201,7 @@ namespace ComTool
                 {
                     byte[] data;
                     ClientInstance.Read(out data);
-                    if (this.tabControl1.SelectedIndex == 1)
+                    if (cboClientMode.SelectedIndex == 0)
                     {
                         if (data != null)
                         {
@@ -270,7 +288,7 @@ namespace ComTool
                         }
                     }
 
-                    if (this.tabControl1.SelectedIndex == 2)
+                    if (this.cboClientMode.SelectedIndex == 1)
                     {
 
                         if (data != null)
@@ -365,7 +383,7 @@ namespace ComTool
                         }
                     }
 
-                    if (this.tabControl1.SelectedIndex == 0)
+                    if (this.cboClientMode.SelectedIndex == 2)
                     {
                         if (data != null)
                         {
@@ -491,11 +509,38 @@ namespace ComTool
         #region 窗体控件事件
 
         /// <summary>
+        /// 转换通讯方式事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboClientMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cboClientMode.SelectedIndex == 0)
+            {
+                this.grpSerialDevice.Visible = true;
+                this.grpSocketDevice.Visible = false;
+                this.grpUSBDevice.Visible = false;
+            }
+            else if (this.cboClientMode.SelectedIndex == 1)
+            {
+                this.grpSerialDevice.Visible = false;
+                this.grpSocketDevice.Visible = true;
+                this.grpUSBDevice.Visible = false;
+            }
+            else
+            {
+                this.grpSerialDevice.Visible = false;
+                this.grpSocketDevice.Visible = false;
+                this.grpUSBDevice.Visible = true;
+            }
+        }
+
+        /// <summary>
         /// 打开通讯方式函数
         /// </summary>
         private void OpenClient()
         {
-            if (this.tabControl1.SelectedIndex == 1)
+            if (this.cboClientMode.SelectedIndex == 0)
             {
                 if (cboPort.SelectedIndex >= 0 && cboBaud.SelectedIndex >= 0 && cboDataBits.SelectedIndex >= 0 && cboStopBits.SelectedIndex >= 0 && cboParity.SelectedIndex >= 0)
                 {
@@ -510,7 +555,7 @@ namespace ComTool
                     ClientInstance.Connect();
                 }
             }
-            if (this.tabControl1.SelectedIndex == 2)
+            if (this.cboClientMode.SelectedIndex == 1)
             {
                 IPAddress ipResult;
                 int iportResult;
@@ -540,7 +585,7 @@ namespace ComTool
             }
 
             //添加USB
-            if (this.tabControl1.SelectedIndex == 0)
+            if (this.cboClientMode.SelectedIndex == 2)
             {
                 ushort vid;
                 ushort pid;
@@ -581,7 +626,7 @@ namespace ComTool
                     ClientInstance.DataReceived += ClientInstance_DataReceived;
                     //ClientInstance.DataReceived += new iComm.DataReceivedHandler(ClientInstance_DataReceived);
                     this.btnConnect.Text = GetResources.iResource.GetString("btnCloseText");
-                    //this.tabControl1.Enabled = false;没必要吧
+                    this.cboClientMode.Enabled = false;
                     this.ckbAutoSend.Enabled = true;
 
                     this.StartTime = DateTime.Now;
@@ -644,7 +689,7 @@ namespace ComTool
             }
             ClientInstance = null;
             this.btnConnect.Text = GetResources.iResource.GetString("btnOpenText");
-            //this.tabControl1.Enabled = true;之前没关闭，现在应该没必要开
+            this.cboClientMode.Enabled = true;
             this.ckbAutoSend.Enabled = false;
 
 
@@ -1258,7 +1303,7 @@ namespace ComTool
             Properties.Settings.Default.AUTOSEND = txtAutoSend.Text;
             Properties.Settings.Default.SENDEOF = (string)cboEOF.SelectedItem;
             Properties.Settings.Default.COMMAND = txtSend.Text;
-            Properties.Settings.Default.CLIENTMODE = tabControl1.SelectedIndex;
+            Properties.Settings.Default.CLIENTMODE = cboClientMode.SelectedIndex;
             Properties.Settings.Default.SOCKETMODE = cboSocketMode.SelectedIndex;
 
             Properties.Settings.Default.RECEIVED = txtReceived.Text;
@@ -1743,6 +1788,81 @@ namespace ComTool
             SendCommand(ckbIsHex10, txtCommand10);
         }
 
+        private void btnSend11_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex11, txtCommand11);
+        }
+
+        private void btnSend12_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex12, txtCommand12);
+        }
+
+        private void btnSend13_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex13, txtCommand13);
+        }
+
+        private void btnSend14_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex14, txtCommand14);
+        }
+
+        private void btnSend15_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex15, txtCommand15);
+        }
+
+        private void btnSend16_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex16, txtCommand16);
+        }
+
+        private void btnSend17_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex17, txtCommand17);
+        }
+
+        private void btnSend18_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex18, txtCommand18);
+        }
+
+        private void btnSend19_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex19, txtCommand19);
+        }
+
+        private void btnSend20_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex20, txtCommand20);
+        }
+
+        private void btnSend21_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex21, txtCommand21);
+        }
+
+        private void btnSend22_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex22, txtCommand22);
+        }
+
+        private void btnSend23_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex23, txtCommand23);
+        }
+
+        private void btnSend24_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex24, txtCommand24);
+        }
+
+        private void btnSend25_Click(object sender, EventArgs e)
+        {
+            SendCommand(ckbIsHex25, txtCommand25);
+        }
+
 		/// <summary>
 		/// 扩展栏备注是否显示选项
 		/// </summary>
@@ -1764,6 +1884,21 @@ namespace ComTool
 				this.txtRemark8.Visible = true;
 				this.txtRemark9.Visible = true;
 				this.txtRemark10.Visible = true;
+				this.txtRemark11.Visible = true;
+				this.txtRemark12.Visible = true;
+				this.txtRemark13.Visible = true;
+				this.txtRemark14.Visible = true;
+				this.txtRemark15.Visible = true;
+				this.txtRemark16.Visible = true;
+				this.txtRemark17.Visible = true;
+				this.txtRemark18.Visible = true;
+				this.txtRemark19.Visible = true;
+				this.txtRemark20.Visible = true;
+				this.txtRemark21.Visible = true;
+				this.txtRemark22.Visible = true;
+				this.txtRemark23.Visible = true;
+				this.txtRemark24.Visible = true;
+				this.txtRemark25.Visible = true;
 
 				this.txtCommand1.Width = this.txtCommand1.Width - 75;
 				this.txtCommand2.Width = this.txtCommand2.Width - 75;
@@ -1775,6 +1910,22 @@ namespace ComTool
 				this.txtCommand8.Width = this.txtCommand8.Width - 75;
 				this.txtCommand9.Width = this.txtCommand9.Width - 75;
 				this.txtCommand10.Width = this.txtCommand10.Width - 75;
+				this.txtCommand11.Width = this.txtCommand11.Width - 75;
+				this.txtCommand12.Width = this.txtCommand12.Width - 75;
+				this.txtCommand13.Width = this.txtCommand13.Width - 75;
+				this.txtCommand14.Width = this.txtCommand14.Width - 75;
+				this.txtCommand15.Width = this.txtCommand15.Width - 75;
+				this.txtCommand16.Width = this.txtCommand16.Width - 75;
+				this.txtCommand17.Width = this.txtCommand17.Width - 75;
+				this.txtCommand18.Width = this.txtCommand18.Width - 75;
+				this.txtCommand19.Width = this.txtCommand19.Width - 75;
+				this.txtCommand20.Width = this.txtCommand20.Width - 75;
+				this.txtCommand21.Width = this.txtCommand21.Width - 75;
+				this.txtCommand22.Width = this.txtCommand22.Width - 75;
+				this.txtCommand23.Width = this.txtCommand23.Width - 75;
+				this.txtCommand24.Width = this.txtCommand24.Width - 75;
+				this.txtCommand25.Width = this.txtCommand25.Width - 75;
+
 			}
 			else
 			{
@@ -1790,7 +1941,22 @@ namespace ComTool
 				this.txtRemark8.Visible = false;
 				this.txtRemark9.Visible = false;
 				this.txtRemark10.Visible = false;
-				
+				this.txtRemark11.Visible = false;
+				this.txtRemark12.Visible = false;
+				this.txtRemark13.Visible = false;
+				this.txtRemark14.Visible = false;
+				this.txtRemark15.Visible = false;
+				this.txtRemark16.Visible = false;
+				this.txtRemark17.Visible = false;
+				this.txtRemark18.Visible = false;
+				this.txtRemark19.Visible = false;
+				this.txtRemark20.Visible = false;
+				this.txtRemark21.Visible = false;
+				this.txtRemark22.Visible = false;
+				this.txtRemark23.Visible = false;
+				this.txtRemark24.Visible = false;
+				this.txtRemark25.Visible = false;
+
 				this.txtCommand1.Width = this.txtCommand1.Width + 75;
 				this.txtCommand2.Width = this.txtCommand2.Width + 75;
 				this.txtCommand3.Width = this.txtCommand3.Width + 75;
@@ -1801,6 +1967,21 @@ namespace ComTool
 				this.txtCommand8.Width = this.txtCommand8.Width + 75;
 				this.txtCommand9.Width = this.txtCommand9.Width + 75;
 				this.txtCommand10.Width = this.txtCommand10.Width + 75;
+				this.txtCommand11.Width = this.txtCommand11.Width + 75;
+				this.txtCommand12.Width = this.txtCommand12.Width + 75;
+				this.txtCommand13.Width = this.txtCommand13.Width + 75;
+				this.txtCommand14.Width = this.txtCommand14.Width + 75;
+				this.txtCommand15.Width = this.txtCommand15.Width + 75;
+				this.txtCommand16.Width = this.txtCommand16.Width + 75;
+				this.txtCommand17.Width = this.txtCommand17.Width + 75;
+				this.txtCommand18.Width = this.txtCommand18.Width + 75;
+				this.txtCommand19.Width = this.txtCommand19.Width + 75;
+				this.txtCommand20.Width = this.txtCommand20.Width + 75;
+				this.txtCommand21.Width = this.txtCommand21.Width + 75;
+				this.txtCommand22.Width = this.txtCommand22.Width + 75;
+				this.txtCommand23.Width = this.txtCommand23.Width + 75;
+				this.txtCommand24.Width = this.txtCommand24.Width + 75;
+				this.txtCommand25.Width = this.txtCommand25.Width + 75;
 			}
 		}
 
@@ -1899,6 +2080,84 @@ namespace ComTool
         {
             ChangeTXTShwo(txtCommand10, ckbIsHex10.Checked);
         }
+
+        private void ckbIsHex11_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand11, ckbIsHex11.Checked);
+        }
+
+        private void ckbIsHex12_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand12, ckbIsHex12.Checked);
+        }
+
+        private void ckbIsHex13_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand13, ckbIsHex13.Checked);
+        }
+
+        private void ckbIsHex14_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand14, ckbIsHex14.Checked);
+        }
+
+        private void ckbIsHex15_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand15, ckbIsHex15.Checked);
+        }
+
+        private void ckbIsHex16_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand16, ckbIsHex16.Checked);
+        }
+
+        private void ckbIsHex17_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand17, ckbIsHex17.Checked);
+        }
+
+        private void ckbIsHex18_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand18, ckbIsHex18.Checked);
+        }
+
+        private void ckbIsHex19_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand19, ckbIsHex19.Checked);
+        }
+
+        private void ckbIsHex20_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand20, ckbIsHex20.Checked);
+        }
+
+        private void ckbIsHex21_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand21, ckbIsHex21.Checked);
+        }
+
+        private void ckbIsHex22_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand22, ckbIsHex22.Checked);
+        }
+
+        private void ckbIsHex23_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand23, ckbIsHex23.Checked);
+        }
+
+        private void ckbIsHex24_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand24, ckbIsHex24.Checked);
+        }
+
+        private void ckbIsHex25_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeTXTShwo(txtCommand25, ckbIsHex25.Checked);
+        }
+
+
+
 
         #endregion
 
@@ -2013,6 +2272,111 @@ namespace ComTool
 						break;
                     System.Threading.Thread.Sleep(AlltimeSpan);
                 }
+                if (txtCommand11.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex11, txtCommand11);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand12.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex12, txtCommand12);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand13.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex13,txtCommand13);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand14.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex14, txtCommand14);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand15.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex15, txtCommand15);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand16.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex16, txtCommand16);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand17.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex17, txtCommand17);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand18.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex18, txtCommand18);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand19.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex19, txtCommand19);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand20.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex20, txtCommand20);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand21.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex21, txtCommand21);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand22.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex22, txtCommand22);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand23.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex23, txtCommand23);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand24.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex24, txtCommand24);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
+                if (txtCommand25.TextLength > 0)
+                {
+                    SendCommand(ckbIsHex25, txtCommand25);
+					if (!AutoSendAllThreadFlag)
+						break;
+                    System.Threading.Thread.Sleep(AlltimeSpan);
+                }
             }
         }
         #endregion
@@ -2119,7 +2483,114 @@ namespace ComTool
 				Command10.SetAttribute("Remark", txtRemark10.Text);
                 root.AppendChild(Command10);
 
+                //第十一条命令
+                XmlElement Command11 = DocSaveCommand.CreateElement("Command11");
+                Command11.SetAttribute("IsHex", ckbIsHex11.Checked.ToString());
+                Command11.SetAttribute("Command", txtCommand11.Text);
+				Command11.SetAttribute("Remark", txtRemark11.Text);
+                root.AppendChild(Command11);
+
+                //第十二条命令
+                XmlElement Command12 = DocSaveCommand.CreateElement("Command12");
+                Command12.SetAttribute("IsHex", ckbIsHex12.Checked.ToString());
+                Command12.SetAttribute("Command", txtCommand12.Text);
+				Command12.SetAttribute("Remark", txtRemark12.Text);
+                root.AppendChild(Command12);
+
+                //第十三条命令
+                XmlElement Command13 = DocSaveCommand.CreateElement("Command13");
+                Command13.SetAttribute("IsHex", ckbIsHex13.Checked.ToString());
+                Command13.SetAttribute("Command", txtCommand13.Text);
+				Command13.SetAttribute("Remark", txtRemark13.Text);
+                root.AppendChild(Command13);
+
+                //第十四条命令
+                XmlElement Command14 = DocSaveCommand.CreateElement("Command14");
+                Command14.SetAttribute("IsHex", ckbIsHex14.Checked.ToString());
+                Command14.SetAttribute("Command",txtCommand14.Text);
+				Command14.SetAttribute("Remark", txtRemark14.Text);
+                root.AppendChild(Command14);
+
+                //第十五条命令
+                XmlElement Command15 = DocSaveCommand.CreateElement("Command15");
+                Command15.SetAttribute("IsHex",ckbIsHex1.Checked.ToString());
+                Command15.SetAttribute("Command",txtCommand15.Text);
+				Command15.SetAttribute("Remark", txtRemark15.Text);
+                root.AppendChild(Command15);
+
+                //第十六条命令
+                XmlElement Command16 = DocSaveCommand.CreateElement("Command16");
+                Command16.SetAttribute("IsHex",ckbIsHex16.Checked.ToString());
+                Command16.SetAttribute("Command",txtCommand16.Text);
+				Command16.SetAttribute("Remark", txtRemark16.Text);
+                root.AppendChild(Command16);
+
+                //第十七条命令
+                XmlElement Command17 = DocSaveCommand.CreateElement("Command17");
+                Command17.SetAttribute("IsHex",ckbIsHex17.Checked.ToString());
+                Command17.SetAttribute("Command",txtCommand17.Text);
+				Command17.SetAttribute("Remark", txtRemark17.Text);
+                root.AppendChild(Command17);
+
+                //第十八条命令 
+                XmlElement Command18 = DocSaveCommand.CreateElement("Command18");
+                Command18.SetAttribute("IsHex",ckbIsHex18.Checked.ToString());
+                Command18.SetAttribute("Command",txtCommand18.Text);
+				Command18.SetAttribute("Remark", txtRemark18.Text);
+                root.AppendChild(Command18);
+
+                //第十九条命令
+                XmlElement Command19 = DocSaveCommand.CreateElement("Command19");
+                Command19.SetAttribute("IsHex",ckbIsHex19.Checked.ToString());
+                Command19.SetAttribute("Command",txtCommand19.Text);
+				Command19.SetAttribute("Remark", txtRemark19.Text);
+                root.AppendChild(Command19);
+
+                //第二十条命令
+                XmlElement Command20 = DocSaveCommand.CreateElement("Command20");
+                Command20.SetAttribute("IsHex",ckbIsHex20.Checked.ToString());
+                Command20.SetAttribute("Command",txtCommand20.Text);
+				Command20.SetAttribute("Remark", txtRemark20.Text);
+                root.AppendChild(Command20);
+
+                //第二十一条命令
+                XmlElement Command21 = DocSaveCommand.CreateElement("Command21");
+                Command21.SetAttribute("IsHex",ckbIsHex21.Checked.ToString());
+                Command21.SetAttribute("Command",txtCommand21.Text);
+				Command21.SetAttribute("Remark", txtRemark21.Text);
+                root.AppendChild(Command21);
+
+                //第二十二条命令
+                XmlElement Command22 = DocSaveCommand.CreateElement("Command22");
+                Command22.SetAttribute("IsHex",ckbIsHex22.Checked.ToString());
+                Command22.SetAttribute("Command",txtCommand22.Text);
+				Command22.SetAttribute("Remark", txtRemark22.Text);
+                root.AppendChild(Command22);
+
+                //第二十三条命令
+                XmlElement Command23 = DocSaveCommand.CreateElement("Command23");
+                Command23.SetAttribute("IsHex",ckbIsHex23.Checked.ToString());
+                Command23.SetAttribute("Command",txtCommand23.Text);
+				Command23.SetAttribute("Remark", txtRemark23.Text);
+                root.AppendChild(Command23);
+
+                //第二十四条命令
+                XmlElement Command24 = DocSaveCommand.CreateElement("Command24");
+                Command24.SetAttribute("IsHex",ckbIsHex24.Checked.ToString());
+                Command24.SetAttribute("Command",txtCommand24.Text);
+				Command24.SetAttribute("Remark", txtRemark24.Text);
+                root.AppendChild(Command24);
+
+                //第二十五条命令
+                XmlElement Command25 = DocSaveCommand.CreateElement("Command25");
+                Command25.SetAttribute("IsHex",ckbIsHex25.Checked.ToString());
+                Command25.SetAttribute("Command",txtCommand25.Text);
+				Command25.SetAttribute("Remark", txtRemark25.Text);
+                root.AppendChild(Command25);
+
                 string Bigstring = DocSaveCommand.InnerXml;
+
+
 
 
                 #endregion 
@@ -2187,6 +2658,65 @@ namespace ComTool
 				txtRemark10.Clear();
                 ckbIsHex10.Checked = false;
 
+                txtCommand11.Clear();
+				txtRemark11.Clear();
+                ckbIsHex11.Checked = false;
+
+                txtCommand12.Clear();
+				txtRemark12.Clear();
+                ckbIsHex12.Checked = false;
+
+                txtCommand13.Clear();
+				txtRemark13.Clear();
+                ckbIsHex13.Checked = false;
+
+                txtCommand14.Clear();
+				txtRemark14.Clear();
+                ckbIsHex14.Checked = false;
+
+                txtCommand15.Clear();
+				txtRemark15.Clear();
+                ckbIsHex15.Checked = false;
+
+                txtCommand16.Clear();
+				txtRemark16.Clear();
+                ckbIsHex16.Checked = false;
+
+                txtCommand17.Clear();
+				txtRemark17.Clear();
+                ckbIsHex17.Checked = false;
+
+                txtCommand18.Clear();
+				txtRemark18.Clear();
+                ckbIsHex18.Checked = false;
+
+                txtCommand19.Clear();
+				txtRemark19.Clear();
+                ckbIsHex19.Checked = false;
+
+                txtCommand20.Clear();
+				txtRemark20.Clear();
+                ckbIsHex20.Checked = false;
+
+                txtCommand21.Clear();
+				txtRemark21.Clear();
+                ckbIsHex21.Checked = false;
+
+                txtCommand22.Clear();
+				txtRemark22.Clear();
+                ckbIsHex22.Checked = false;
+
+                txtCommand23.Clear();
+				txtRemark23.Clear();
+                ckbIsHex23.Checked = false;
+
+                txtCommand24.Clear();
+				txtRemark24.Clear();
+                ckbIsHex24.Checked = false;
+
+                txtCommand25.Clear();
+				txtRemark25.Clear();
+                ckbIsHex25.Checked = false;
                 cboFileNames.Items.RemoveAt(cboFileNames.SelectedIndex);
             }
             else
@@ -2316,6 +2846,141 @@ namespace ComTool
 								ckbIsHex10.Checked = false;
 							txtCommand10.Text = Command10.Attributes[1].Value;
 							txtRemark10.Text = Command10.Attributes[2].Value;
+
+							//第十一条命令
+							XmlNode Command11 = root.SelectSingleNode("Command11");
+							if (Command11.Attributes[0].Value == "True")
+								ckbIsHex11.Checked = true;
+							else
+								ckbIsHex11.Checked = false;
+							txtCommand11.Text = Command11.Attributes[1].Value;
+							txtRemark11.Text = Command11.Attributes[2].Value;
+
+							//第十二条命令
+							XmlNode Command12 = root.SelectSingleNode("Command12");
+							if (Command12.Attributes[0].Value == "True")
+								ckbIsHex12.Checked = true;
+							else
+								ckbIsHex12.Checked = false;
+							txtCommand12.Text = Command12.Attributes[1].Value;
+							txtRemark12.Text = Command12.Attributes[2].Value;
+
+							//第十三条命令
+							XmlNode Command13 = root.SelectSingleNode("Command13");
+							if (Command13.Attributes[0].Value == "True")
+								ckbIsHex13.Checked = true;
+							else
+								ckbIsHex13.Checked = false;
+							txtCommand13.Text = Command13.Attributes[1].Value;
+							txtRemark13.Text = Command13.Attributes[2].Value;
+
+							//第十四条命令
+							XmlNode Command14 = root.SelectSingleNode("Command14");
+							if (Command14.Attributes[0].Value == "True")
+								ckbIsHex14.Checked = true;
+							else
+								ckbIsHex14.Checked = false;
+							txtCommand14.Text = Command14.Attributes[1].Value;
+							txtRemark14.Text = Command14.Attributes[2].Value;
+
+							//第十五条命令
+							XmlNode Command15 = root.SelectSingleNode("Command15");
+							if (Command15.Attributes[0].Value == "True")
+								ckbIsHex15.Checked = true;
+							else
+								ckbIsHex15.Checked = false;
+							txtCommand15.Text = Command15.Attributes[1].Value;
+							txtRemark15.Text = Command15.Attributes[2].Value;
+
+							//第十六条命令
+							XmlNode Command16 = root.SelectSingleNode("Command16");
+							if (Command16.Attributes[0].Value == "True")
+								ckbIsHex16.Checked = true;
+							else
+								ckbIsHex16.Checked = false;
+							txtCommand16.Text = Command16.Attributes[1].Value;
+							txtRemark16.Text = Command16.Attributes[2].Value;
+
+							//第十七条命令 
+							XmlNode Command17 = root.SelectSingleNode("Command17");
+							if (Command17.Attributes[0].Value == "True")
+								ckbIsHex17.Checked = true;
+							else
+								ckbIsHex17.Checked = false;
+							txtCommand17.Text = Command17.Attributes[1].Value;
+							txtRemark17.Text = Command17.Attributes[2].Value;
+
+							//第十八条命令
+							XmlNode Command18 = root.SelectSingleNode("Command18");
+							if (Command18.Attributes[0].Value == "True")
+								ckbIsHex18.Checked = true;
+							else
+								ckbIsHex18.Checked = false;
+							txtCommand18.Text = Command18.Attributes[1].Value;
+							txtRemark18.Text = Command18.Attributes[2].Value;
+
+							//第十九条命令
+							XmlNode Command19 = root.SelectSingleNode("Command19");
+							if (Command19.Attributes[0].Value == "True")
+								ckbIsHex19.Checked = true;
+							else
+								ckbIsHex19.Checked = false;
+							txtCommand19.Text = Command19.Attributes[1].Value;
+							txtRemark19.Text = Command19.Attributes[2].Value;
+
+							//第二十条命令
+							XmlNode Command20 = root.SelectSingleNode("Command20");
+							if (Command20.Attributes[0].Value == "True")
+								ckbIsHex20.Checked = true;
+							else
+								ckbIsHex20.Checked = false;
+							txtCommand20.Text = Command20.Attributes[1].Value;
+							txtRemark20.Text = Command20.Attributes[2].Value;
+
+							//第二十一条命令
+							XmlNode Command21 = root.SelectSingleNode("Command21");
+							if (Command21.Attributes[0].Value == "True")
+								ckbIsHex21.Checked = true;
+							else
+								ckbIsHex21.Checked = false;
+							txtCommand21.Text = Command21.Attributes[1].Value;
+							txtRemark21.Text = Command21.Attributes[2].Value;
+
+							//第二十二条命令 
+							XmlNode Command22 = root.SelectSingleNode("Command22");
+							if (Command22.Attributes[0].Value == "True")
+								ckbIsHex22.Checked = true;
+							else
+								ckbIsHex22.Checked = false;
+							txtCommand22.Text = Command22.Attributes[1].Value;
+							txtRemark22.Text = Command22.Attributes[2].Value;
+
+							//第二十三条命令
+							XmlNode Command23 = root.SelectSingleNode("Command23");
+							if (Command23.Attributes[0].Value == "True")
+								ckbIsHex23.Checked = true;
+							else
+								ckbIsHex23.Checked = false;
+							txtCommand23.Text = Command23.Attributes[1].Value;
+							txtRemark23.Text = Command23.Attributes[2].Value;
+
+							//第二十四条命令
+							XmlNode Command24 = root.SelectSingleNode("Command24");
+							if (Command24.Attributes[0].Value == "True")
+								ckbIsHex24.Checked = true;
+							else
+								ckbIsHex24.Checked = false;
+							txtCommand24.Text = Command24.Attributes[1].Value;
+							txtRemark24.Text = Command24.Attributes[2].Value;
+
+							//第二十五条命令
+							XmlNode Command25 = root.SelectSingleNode("Command25");
+							if (Command25.Attributes[0].Value == "True")
+								ckbIsHex25.Checked = true;
+							else
+								ckbIsHex25.Checked = false;
+							txtCommand25.Text = Command25.Attributes[1].Value;
+							txtRemark25.Text = Command25.Attributes[2].Value;
 
 						}
 						else
@@ -2494,6 +3159,66 @@ namespace ComTool
             txtCommand10.Clear();
 			txtRemark10.Clear();
             ckbIsHex10.Checked = false;
+
+            txtCommand11.Clear();
+			txtRemark11.Clear();
+            ckbIsHex11.Checked = false;
+
+            txtCommand12.Clear();
+			txtRemark12.Clear();
+            ckbIsHex12.Checked = false;
+
+            txtCommand13.Clear();
+			txtRemark13.Clear();
+            ckbIsHex13.Checked = false;
+
+            txtCommand14.Clear();
+			txtRemark14.Clear();
+            ckbIsHex14.Checked = false;
+
+            txtCommand15.Clear();
+			txtRemark15.Clear();
+            ckbIsHex15.Checked = false;
+
+            txtCommand16.Clear();
+			txtRemark16.Clear();
+            ckbIsHex16.Checked = false;
+
+            txtCommand17.Clear();
+			txtRemark17.Clear();
+            ckbIsHex17.Checked = false;
+
+            txtCommand18.Clear();
+			txtRemark18.Clear();
+            ckbIsHex18.Checked = false;
+
+            txtCommand19.Clear();
+			txtRemark19.Clear();
+            ckbIsHex19.Checked = false;
+
+            txtCommand20.Clear();
+			txtRemark20.Clear();
+            ckbIsHex20.Checked = false;
+
+            txtCommand21.Clear();
+			txtRemark21.Clear();
+            ckbIsHex21.Checked = false;
+
+            txtCommand22.Clear();
+			txtRemark22.Clear();
+            ckbIsHex22.Checked = false;
+
+            txtCommand23.Clear();
+			txtRemark23.Clear();
+            ckbIsHex23.Checked = false;
+
+            txtCommand24.Clear();
+			txtRemark24.Clear();
+            ckbIsHex24.Checked = false;
+
+            txtCommand25.Clear();
+			txtRemark25.Clear();
+            ckbIsHex25.Checked = false;
 
             this.cboFileNames.SelectedIndex = -1;
 

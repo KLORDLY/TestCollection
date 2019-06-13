@@ -1,0 +1,4 @@
+﻿<Data>
+  <SocketClientInfo Name="ConST9010" IPAdress="192.168.20.235" Port="10001" ClientMode="TCP"/>
+  <SocketClientInfo Name="ConST821" IPAdress="192.168.20.235" Port="10001" ClientMode="UDP"/>
+</Data>

@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnCloseText" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="btnOpenText" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="ClientMode" xml:space="preserve">
+    <value>SerialPort,Socket,USB</value>
+  </data>
+  <data name="ErrorStartClient" xml:space="preserve">
+    <value>Open Client Failed.</value>
+  </data>
+  <data name="ExpandClose" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="ExpandOpen" xml:space="preserve">
+    <value>Expand</value>
+  </data>
+  <data name="ReceivedInterval" xml:space="preserve">
+    <value>Null,Space,Enter,Tab</value>
+  </data>
+  <data name="ShowTime" xml:space="preserve">
+    <value>Null,Totalmillisecond,Normal</value>
+  </data>
+  <data name="SocketClientMode" xml:space="preserve">
+    <value>UDPClient,TCPClient</value>
+  </data>
+  <data name="ErrorDeleteFile" xml:space="preserve">
+    <value>Please Selected  File.</value>
+  </data>
+  <data name="ErrorDeleteFileExist" xml:space="preserve">
+    <value>The File is Not Exist.</value>
+  </data>
+  <data name="ErrorNoClient" xml:space="preserve">
+    <value>Please Open Client First.</value>
+  </data>
+  <data name="ErrorReadFile" xml:space="preserve">
+    <value>Read File Failed.</value>
+  </data>
+  <data name="ErrorSaveDataText" xml:space="preserve">
+    <value>The Received or Send Data is Empty.</value>
+  </data>
+  <data name="ErrorSaveFile" xml:space="preserve">
+    <value>The File Name is Empty.</value>
+  </data>
+  <data name="ErrorUSBStartClient" xml:space="preserve">
+    <value>Connect Client Failed, Please Check VID\PID and Client Status!</value>
+  </data>
+  <data name="HelpInfomation" xml:space="preserve">
+    <value>Function：
+1. According to the need to select SerialPort communication, NetWork communication and USB communication three methods.
+2. Receive SerialPort, NetWork and USB line data and display.
+3. The received data display can be selected either in character or HEX mode.
+4. English showed no garbled, and does not affect the speed.
+5. SerialPort communication can choose various parameters, also SerialPort settings and Character string operation settings are automatically saved when the application is closed, automatic loading open. Network communication can be written to the IP and port. connection will be error if the format is error .USB communication can search Location, the connection will be wrong if the same machine was repeated connection twice.
+6. Can send HEX command, but need to write a correct send format and tick HEX send.
+7. Can repeatedly send data, and can set the transmission time interval.
+8. You can choose to send in send newline string, That is automatically add newline.
+9. You can save the contents of the received text box, or open an TEXT document to read the contents to the receive text box.
+10. You can see the number of bytes sent and the number of bytes received without delay. And press the clear button will empty the text box.
+11. Extended function, multiple command string definition, each string is defined as a string, you can send HEX.
+12. Click the number on the right of the string to send this string.
+13. You can set the loop to send the string you defined, and you can set the sending time interval.
+14. Can save multiple string commands, in the expansion box below the text box to input the file name store can be saved, save the file name will appear in the top drop-down box.
+15. Select the top drop-down box in a file name will be the contents of the file in accordance with the format into a number of string commands, conducive to the next operation.
+16. Can choose data interval mode, provide spaces, enter, Tab 3 interval modes.
+17. When multiple commands are stored, the file will be updated if the file name exists.
+Problem:
+1. Because the processing mechanism is a bit slow, in the automatic transmission interval below 50ms, after the end of the transmission will be part of the data has not been displayed, so need a certain buffer time.
+2. The TextBox display limit, so in order to ensure the software running at work, reaches the upper limit will be at TextBox to automatically save and delete the contents of the text box, save the file path to the program directory name, to save time and display, please note.</value>
+  </data>
+</root>
